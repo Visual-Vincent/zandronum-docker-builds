@@ -6,7 +6,7 @@ dnf -y install epel-release dnf-plugins-core make wget python3
 dnf config-manager --set-enabled powertools
 dnf -y install gcc-c++ make cmake SDL-devel mercurial zlib-devel \
 bzip2-devel libjpeg-turbo-devel fluidsynth-devel gtk2-devel nasm \
-mesa-libGL-devel openssl-devel tar
+mesa-libGL-devel openssl-devel tar glew-devel
 
 # Download TiMidity++ source code
 mkdir -pv timidity

@@ -1,14 +1,30 @@
-FROM $$IMAGE$$
+# =============================================================================
+# BUILD STAGE
+# =============================================================================
+FROM $$IMAGE$$ AS build
+ARG ZAN_BUILD_CLIENT=0
 RUN mkdir /zandronum
 
 # Add build scripts
-ADD build.sh /zandronum
-ADD prebuild.sh /zandronum
-ADD postbuild.sh /zandronum
-RUN chmod +x /zandronum/build.sh /zandronum/prebuild.sh /zandronum/postbuild.sh
+COPY build.sh /zandronum
+COPY prebuild.sh /zandronum
+COPY postbuild.sh /zandronum
+COPY copy-output.sh /zandronum
+RUN chmod +x /zandronum/build.sh /zandronum/prebuild.sh /zandronum/postbuild.sh /zandronum/copy-output.sh
 
 # Build Zandronum
 RUN /zandronum/build.sh
 
-# Default endpoint
-ENTRYPOINT ["/zandronum/build/buildserver/zandronum-server"]
+# =============================================================================
+# FINAL COMPILED STAGE
+# =============================================================================
+FROM $$IMAGE$$
+RUN mkdir /zandronum /zandronum-server
+COPY --from=build /zandronum/bin/client /zandronum
+
+# Docker bug: https://stackoverflow.com/a/62409523
+RUN true
+
+COPY --from=build /zandronum/bin/server /zandronum-server
+WORKDIR /zandronum-server
+ENTRYPOINT ["./zandronum-server"]

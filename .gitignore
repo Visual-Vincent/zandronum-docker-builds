@@ -1,4 +1,2 @@
-/zan*/*/Dockerfile
-/zan*/*/build.sh
-!/zan*/common/Dockerfile
-!/zan*/common/build.sh
+/zan*/*/build
+!/zan*/common/build
