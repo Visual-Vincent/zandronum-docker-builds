@@ -1,0 +1,14 @@
+FROM $$IMAGE$$
+RUN mkdir /zandronum
+
+# Add build scripts
+ADD build.sh /zandronum
+ADD prebuild.sh /zandronum
+ADD postbuild.sh /zandronum
+RUN chmod +x /zandronum/build.sh /zandronum/prebuild.sh /zandronum/postbuild.sh
+
+# Build Zandronum
+RUN /zandronum/build.sh
+
+# Default endpoint
+ENTRYPOINT ["/zandronum/build/buildserver/zandronum-server"]
