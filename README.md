@@ -24,8 +24,8 @@ To retrieve the binaries from the resulting Docker image, you may utilize the `t
 
 ```shell
 # Extract client binaries
-tools/extract-bin.sh client zandronum:3.1 /path/to/destination/zandronum3.1-client.tar
+tools/extract-bin.sh client zandronum:3.1-almalinux8 /path/to/destination/zandronum3.1-client.tar
 
 # Extract server binaries
-tools/extract-bin.sh server zandronum:3.1 /path/to/destination/zandronum3.1-server.tar
+tools/extract-bin.sh server zandronum:3.1-almalinux8 /path/to/destination/zandronum3.1-server.tar
 ```
