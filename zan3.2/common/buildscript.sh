@@ -15,9 +15,9 @@ wget -nc https://zandronum.com/essentials/fmod/fmodapi44464linux.tar.gz
 tar -xvzf fmodapi44464linux.tar.gz -C build
 rm -f fmodapi44464linux.tar.gz
 
-# Check out the relevant Zandronum version
+# Checkout the relevant Zandronum version
 cd /zandronum/build
-hg update ZA_3.1
+hg update ZA_3.2
 #hg update -c $(hg log -l1 -k 'changed the version string to' --template '{node}\n') # Trick to pick the latest stable version
 
 # Remove gl/api/glext.h import as it causes problems with newer versions of GLEW
